@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  color: #1b1e27;
+}
+
+/* Focus clavier toujours visible */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #e8a94a;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Respect des préférences de mouvement réduit */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.container-page {
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.section-y {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+  .section-y {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+}
+
+/* Séparateur de section signature : ligne fine + touche or centrée */
+.section-divider {
+  position: relative;
+  border-bottom: 1px solid #e5e1d3;
+}
+
+.section-divider::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  transform: translateX(-50%);
+  width: 56px;
+  height: 2px;
+  background-color: #e8a94a;
+}
+
+/* Carte à coin coupé : signature visuelle qui reprend l'angularité du logo VT */
+.card-cut {
+  --cut: 20px;
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--cut)) 0,
+    100% var(--cut),
+    100% 100%,
+    0 100%
+  );
+  position: relative;
+}
+
+.card-cut::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--cut);
+  height: var(--cut);
+  background: linear-gradient(135deg, transparent 50%, #e8a94a 50%);
+  opacity: 0.55;
+}
+
+/* Nombres géants "fantômes" pour la section processus */
+.ghost-number {
+  font-family: var(--font-fraunces), serif;
+  color: transparent;
+  -webkit-text-stroke: 1.5px #e5e1d3;
+  line-height: 1;
+}
